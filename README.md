@@ -64,3 +64,52 @@ print(soup3.title.text)
 print(soup3.a['href'])
 ```
 
+ ### 2.学习一下Tag对象和通过该对象获取name和string属性
+  首先我们用BeautifulSoup对象装载HTML代码。
+  HTML代码中的元素会被转变为Tag对象（自定义的也可以），Tag对象的两个属性如下。
+  
+  - name：获取标签名
+  - string / text：获取标签内文本
+     
+  如下代码中，soup就是BS对象，soup.a就是一个Tag对象 BS对象.Tag对象.属性
+  ```
+  from bs4 import BeautifulSoup
+
+html = '''
+<html>
+    <head><title>index</title></head>
+    <body>
+        <a href="a.html">first page</a>
+        <p>
+        <a href="b.html">second page</a>
+        <p>
+        <a href="c.html">third page</a>
+        <p>
+        <x k='klgr01'>hello BS</x>
+    </body>
+</html>
+'''
+#创建BS对象并实例化，用lxml引擎
+soup = BeautifulSoup(html, 'lxml')
+
+print(soup.a)
+
+#获取body标签中的第一个a标签
+print(soup.body.a)
+
+print(soup.a.text)#text获取标签内文本
+
+#设置节点名称
+#比如我将第一个a标签改为div标签, 通过name属性获取标签名
+soup.a.name = 'div'
+
+print(soup.x)
+#获取到我们自定义的x类型标签的文本, string属性获取和设置标签文本
+print(soup.x.string)
+soup.x.string = 'klgr is the king'
+print(soup.x)
+print(soup.x.string)
+
+  ```
+
+

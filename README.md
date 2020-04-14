@@ -18,16 +18,17 @@ os：操作系统 存储指定量图片到位置
   BS可以做到把HTML转换为*对象树*。
   
   ### 1.pip install beautifulsoup4 之后，了解一下BS4
-     bs4的核心类BeautifulSoup.其第一个参数指定要分析的HTML代码；第二个参数表示HTML分析引擎。
+  bs4的核心类BeautifulSoup.其第一个参数指定要分析的HTML代码；第二个参数表示HTML分析引擎。
      
-     - html分析引擎的类型
-     - html.parser：python内置标准库 
-     - lxml：需安装C语言库 pip 
-     - html5lib：以浏览器方式解析，很强 pip
+  - html分析引擎的类型
+  - html.parser：python内置标准库 
+  - lxml：需安装C语言库 pip 
+  - html5lib：以浏览器方式解析，很强 pip
      
-     *代码跑一下作为三种引擎的测试*
-     from bs4 import BeautifulSoup
-‘‘‘
+  *代码跑一下作为三种引擎的测试*
+
+```
+from bs4 import BeautifulSoup
 #实例化核心类，并指定为html.parser引擎
 soup1 = BeautifulSoup('<title>html.parser test </title>', 'html.parser')
 
@@ -61,4 +62,5 @@ print(soup3.title.text)
 
 #获取第一个a标签的href属性值，比正则舒服多了
 print(soup3.a['href'])
-‘‘‘
+```
+

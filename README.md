@@ -166,4 +166,15 @@ print(soup.body['class'])
 
 print(soup.a['rel'])
    ```
+   
+ 有两点需要额外注意：
+ - 列表类型的属性是系统内定的。比如说，你可以自定义一个属性并且用多个空格分隔，但是BS类仍然认为它是字符串类的属性。
+ - HTML支持的列表属性一共有这些
+    - rel
+    - class
+    - rev
+    - accept-charset
+    - headers
+    - accesskey
+    
 

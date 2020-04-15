@@ -2,7 +2,7 @@
 written by KLGR01
 
 ## 一、百度图片的抓取（using requests）
-  原理就是先爬下来HTML代码，通过正则匹配到objUrl，然后下载图片。
+  原理就是先爬下来HTML代码，通过正则匹配到objUrl，然后下载图片。详见代码。
 ## 二、利用HTML分析库Beautiful Soup
   抓取到JSON、XML数据后，需要进行分析。
   HTML相比而言更繁琐，如何分析？一是正则，二是Beautiful Soup.
@@ -171,6 +171,7 @@ print(soup.a['rel'])
 HTML如此多的标签，不可能都需要，所以过滤很有必要。
 每当扫描到一个标签，系统就会将封装该标签的Tag对象传入回调函数。
 然后回调函数根据标签的属性或者名称进行过滤，返回True代表找到，否则False.
+
     ```
     def filterFunc(tag):
     if tag.has_attr('class'):
@@ -180,3 +181,13 @@ HTML如此多的标签，不可能都需要，所以过滤很有必要。
     for tag in soup.find_all(filterFunc):
       print(tag)
     ```
+## 三、支持下载队列的多线程网络爬虫
+  递归不如多线程，在于递归更占用空间。
+  多线程+下载队列实现网络url爬取：
+  - 通过多线程下载HTML页面，并读取其中的a标签
+  - 将提取的url加入*下载队列*
+  - 每一个线程分析HTML代码时都从*下载队列*取出一个url，然后下载这个url指向的页面并分析
+  - 再把提取出来的url加入到*下载队列*
+  - 处理完的url将从下载队列删除
+  
+  如此构成迭代，详见代码。

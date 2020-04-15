@@ -2,16 +2,6 @@
 written by KLGR01
 
 ## 一、百度图片的抓取（using requests）
-### 0.引用函数库
-
-re:正则表达式实现url指定内容抓取、图片命名
-requests：get方法获取url 与网页端相连
-os：操作系统 存储指定量图片到位置
-
-### 1.函数实现原理
-
-
-
 
 ## 二、利用HTML分析库Beautiful Soup
   抓取到JSON、XML数据后，需要进行分析。
@@ -177,4 +167,16 @@ print(soup.a['rel'])
     - headers
     - accesskey
     
-
+    ### 4.用回调函数来过滤标签
+    HTML如此多的标签，不可能都需要，所以过滤很有必要。
+    每当扫描到一个标签，系统就会将封装该标签的Tag对象传入回调函数。
+    然后回调函数根据标签的属性或者名称进行过滤，返回True代表找到，否则False.
+    ```
+    def filterFunc(tag):
+    if tag.has_attr('class'):
+        if 'style' in tag['class']:
+            return True
+    return False
+for tag in soup.find_all(filterFunc):
+    print(tag)
+    ```

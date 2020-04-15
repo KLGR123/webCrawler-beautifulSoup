@@ -2,7 +2,7 @@
 written by KLGR01
 
 ## 一、百度图片的抓取（using requests）
-
+  原理就是先爬下来HTML代码，通过正则匹配到objUrl，然后下载图片。
 ## 二、利用HTML分析库Beautiful Soup
   抓取到JSON、XML数据后，需要进行分析。
   HTML相比而言更繁琐，如何分析？一是正则，二是Beautiful Soup.
@@ -167,16 +167,16 @@ print(soup.a['rel'])
     - headers
     - accesskey
     
-    ### 4.用回调函数来过滤标签
-    HTML如此多的标签，不可能都需要，所以过滤很有必要。
-    每当扫描到一个标签，系统就会将封装该标签的Tag对象传入回调函数。
-    然后回调函数根据标签的属性或者名称进行过滤，返回True代表找到，否则False.
+### 4.用回调函数来过滤标签
+HTML如此多的标签，不可能都需要，所以过滤很有必要。
+每当扫描到一个标签，系统就会将封装该标签的Tag对象传入回调函数。
+然后回调函数根据标签的属性或者名称进行过滤，返回True代表找到，否则False.
     ```
     def filterFunc(tag):
     if tag.has_attr('class'):
         if 'style' in tag['class']:
             return True
     return False
-for tag in soup.find_all(filterFunc):
-    print(tag)
+    for tag in soup.find_all(filterFunc):
+      print(tag)
     ```

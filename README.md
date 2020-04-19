@@ -191,3 +191,6 @@ HTML如此多的标签，不可能都需要，所以过滤很有必要。
   - 处理完的url将从下载队列删除
   
   如此构成迭代，详见代码。
+  
+## 四、极其方便的MYSQL操作库PyMysql
+  不多bb直接example[代码](https://github.com/KLGR123/webCrawler-beautifulSoup/blob/master/pymysqlTest.py)
